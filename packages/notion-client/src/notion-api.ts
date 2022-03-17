@@ -1,10 +1,10 @@
-import got, { OptionsOfJSONResponseBody } from 'got'
-import pMap from 'p-map'
-
-import { parsePageId, getPageContentBlockIds, uuidToId } from 'notion-utils'
+import { OptionsOfJSONResponseBody } from 'got'
 import * as notion from 'notion-types'
-
+import { getPageContentBlockIds, parsePageId, uuidToId } from 'notion-utils'
+import pMap from 'p-map'
 import * as types from './types'
+
+
 
 /**
  * Main Notion API client.
@@ -518,21 +518,21 @@ export class NotionAPI {
 
     const url = `${this._apiBaseUrl}/${endpoint}`
 
-    return got
-      .post(url, {
-        ...gotOptions,
-        json: body,
-        headers
-      })
-      .json()
+    // return got
+    //   .post(url, {
+    //     ...gotOptions,
+    //     json: body,
+    //     headers
+    //   })
+    //   .json()
 
-    // return fetch(url, {
-    //   method: 'post',
-    //   body: JSON.stringify(body),
-    //   headers
-    // }).then((res) => {
-    //   console.log(endpoint, res)
-    //   return res.json()
-    // })
+    return fetch(url, {
+      method: 'post',
+      body: JSON.stringify(body),
+      headers
+    }).then((res) => {
+      console.log(endpoint, res)
+      return res.json()
+    })
   }
 }
